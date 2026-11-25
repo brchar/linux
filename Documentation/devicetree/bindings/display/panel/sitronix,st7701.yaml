@@ -22,15 +22,17 @@ description: |
 
 properties:
   compatible:
-    items:
-      - enum:
-          - anbernic,rg-arc-panel
-          - anbernic,rg28xx-panel
-          - densitron,dmt028vghmcmi-1a
-          - elida,kd50t048a
-          - techstar,ts8550b
-          - winstar,wf40eswaa6mnn0
-      - const: sitronix,st7701
+    oneOf:
+      - const: odroid,vu5s
+      - items:
+          - enum:
+              - anbernic,rg-arc-panel
+              - anbernic,rg28xx-panel
+              - densitron,dmt028vghmcmi-1a
+              - elida,kd50t048a
+              - techstar,ts8550b
+              - winstar,wf40eswaa6mnn0
+          - const: sitronix,st7701
 
   reg:
     description: DSI / SPI channel used by that screen
@@ -80,6 +82,7 @@ allOf:
                 - anbernic,rg28xx-panel
                 - densitron,dmt028vghmcmi-1a
                 - elida,kd50t048a
+                - odroid,vu5s
                 - techstar,ts8550b
     then:
       required:
