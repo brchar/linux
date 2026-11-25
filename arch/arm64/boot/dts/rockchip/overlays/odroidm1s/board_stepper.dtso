@@ -1,0 +1,44 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/pinctrl/rockchip.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+&{/} {
+	stepper_canfdclk: clock-stepper-canfd {
+		compatible = "fixed-clock";
+		#clock-cells = <0>;
+		clock-frequency = <20000000>;
+	};
+};
+
+&spi1 {
+	#address-cells = <1>;
+	#size-cells = <0>;
+	cs-gpios = <&gpio3 RK_PA1 GPIO_ACTIVE_LOW>;
+	num-cs = <1>;
+
+	status = "okay";
+
+	stepper_canfd: can@0 {
+		compatible = "microchip,mcp2517fd";
+		reg = <0>;
+		clocks = <&stepper_canfdclk>;
+		interrupt-parent = <&gpio2>;
+		interrupts = <RK_PB0 IRQ_TYPE_EDGE_FALLING>;
+		pinctrl-0 = <&stepper_canfd_int_pins>;
+		pinctrl-names = "default";
+		spi-max-frequency = <10000000>;
+
+		status = "okay";
+	};
+};
+
+&pinctrl {
+	can {
+		stepper_canfd_int_pins: stepper-canfd-int-pins {
+			rockchip,pins = <2 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
+		};
+	};
+};

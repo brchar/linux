@@ -343,3 +343,11 @@ rk3588-rock-5b-plus-radxa-4k-cam-dtbs := rk3588-rock-5b-plus.dtb \
 dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-tiger-haikou-haikou-video-demo.dtb
 rk3588-tiger-haikou-haikou-video-demo-dtbs := rk3588-tiger-haikou.dtb \
 	rk3588-tiger-haikou-video-demo.dtbo
+
+DTC_FLAGS_rk3568-odroid-m1 := -@
+DTC_FLAGS_rk3566-odroid-m1s := -@
+DTC_FLAGS_rk3588s-odroid-m2 := -@
+
+subdir-$(CONFIG_ARCH_ROCKCHIP) += overlays/odroidm1
+subdir-$(CONFIG_ARCH_ROCKCHIP) += overlays/odroidm1s
+subdir-$(CONFIG_ARCH_ROCKCHIP) += overlays/odroidm2

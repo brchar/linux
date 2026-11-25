@@ -1,0 +1,34 @@
+/dts-v1/;
+/plugin/;
+
+&backlight {
+	status = "okay";
+};
+
+&pwm4 {
+	status = "okay";
+};
+
+&i2c4 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+	touchscreen {
+		status = "okay";
+		compatible = "goodix,gt911";
+		reg = <0x5d>;
+	};
+};
+
+&dsi_dphy0 {
+	status = "okay";
+};
+
+&dsi0 {
+	status = "okay";
+};
+
+&lcd {
+	compatible = "odroid,vu8m";
+};

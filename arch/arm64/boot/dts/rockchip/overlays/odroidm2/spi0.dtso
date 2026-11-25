@@ -1,0 +1,9 @@
+/dts-v1/;
+/plugin/;
+
+&spi0 {
+	status = "okay";
+	#address-cells = <1>;
+	#size-cells = <0>;
+
+};
